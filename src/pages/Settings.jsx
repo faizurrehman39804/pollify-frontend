@@ -1,24 +1,19 @@
 import { useAuth } from "../context/AuthContext";
+import UserProfileCard from "../components/UserProfileCard";
 
 export default function Settings() {
   const { user } = useAuth();
 
   return (
-    <div className="max-w-xl">
-      <h1 className="text-2xl font-bold mb-1">Settings</h1>
-      <p className="text-[var(--color-text-muted)] mb-6">Manage your account and preferences.</p>
-
-      <div className="bg-[var(--color-surface)] border border-[var(--color-border)] rounded-2xl p-6 flex items-center gap-4 mb-6">
-        <img
-          src={user?.avatar}
-          alt={user?.name}
-          className="w-16 h-16 rounded-full object-cover border-2 border-[var(--color-brand)]/30"
-        />
-        <div>
-          <p className="font-semibold text-lg">{user?.name}</p>
-          <p className="text-sm text-[var(--color-text-faint)]">{user?.handle}</p>
-        </div>
+    <div className="max-w-xl space-y-6">
+      <div>
+        <h1 className="text-2xl font-bold mb-1">Settings</h1>
+        <p className="text-[var(--color-text-muted)] mb-6">
+          Manage your account and preferences.
+        </p>
       </div>
+
+      <UserProfileCard user={user} />
 
       <div className="bg-[var(--color-surface)] border border-[var(--color-border)] rounded-2xl p-6 flex flex-col gap-5">
         <div>

@@ -6,10 +6,16 @@ export default function EmptyState({ icon, title, subtitle, ctaLabel, ctaTo }) {
   return (
     <div className="flex flex-col items-center justify-center text-center py-24 border border-dashed border-[var(--color-border-light)] rounded-2xl">
       <div className="w-14 h-14 rounded-full bg-[var(--color-surface)] border border-[var(--color-border)] flex items-center justify-center mb-4">
-        <Icon name={icon} size={22} className="text-[var(--color-text-faint)]" />
+        <Icon
+          name={icon}
+          size={22}
+          className="text-[var(--color-text-faint)]"
+        />
       </div>
       <p className="font-semibold mb-1">{title}</p>
-      <p className="text-sm text-[var(--color-text-faint)] max-w-xs mb-6">{subtitle}</p>
+      <p className="text-sm text-[var(--color-text-faint)] max-w-xs mb-6">
+        {subtitle}
+      </p>
       {ctaLabel && (
         <button
           onClick={() => navigate(ctaTo)}

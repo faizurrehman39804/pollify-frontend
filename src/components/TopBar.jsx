@@ -10,7 +10,11 @@ export default function TopBar() {
     <header className="sticky top-0 z-10 flex items-center gap-4 border-b border-[var(--color-border)] bg-[var(--color-bg)]/90 backdrop-blur px-4 lg:px-8 py-4">
       <div className="flex-1 max-w-xl">
         <div className="flex items-center gap-2 bg-[var(--color-surface)] border border-[var(--color-border)] rounded-lg px-3 py-2">
-          <Icon name="search" size={16} className="text-[var(--color-text-faint)]" />
+          <Icon
+            name="search"
+            size={16}
+            className="text-[var(--color-text-faint)]"
+          />
           <input
             type="text"
             placeholder="Search polls..."
@@ -33,10 +37,15 @@ export default function TopBar() {
         >
           <Icon name="bell" size={17} />
         </button>
-        <button onClick={() => navigate("/settings")} className="focus-ring rounded-full">
+        <button
+          onClick={() => navigate("/settings")}
+          className="focus-ring rounded-full"
+          title="Open profile settings"
+          aria-label="Profile settings"
+        >
           <img
-            src={user?.avatar}
-            alt={user?.name}
+            src={user?.avatar ?? "/profile.png"}
+            alt={user?.name ?? "Profile"}
             className="w-9 h-9 rounded-full object-cover border border-[var(--color-border-light)]"
           />
         </button>

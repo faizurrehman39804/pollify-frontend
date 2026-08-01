@@ -1,6 +1,14 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { Mail, Eye, EyeOff, ArrowRight, Users2, TrendingUp, Zap } from "lucide-react";
+import {
+  Mail,
+  Eye,
+  EyeOff,
+  ArrowRight,
+  Users2,
+  TrendingUp,
+  Zap,
+} from "lucide-react";
 import { useAuth } from "../context/AuthContext";
 
 export default function Login() {
@@ -49,8 +57,8 @@ export default function Login() {
           </h1>
 
           <p className="text-[var(--color-text-muted)] max-w-sm leading-relaxed">
-            Create polls in seconds, collect votes instantly, and discover what your
-            community truly thinks.
+            Create polls in seconds, collect votes instantly, and discover what
+            your community truly thinks.
           </p>
         </div>
 
@@ -72,10 +80,6 @@ export default function Login() {
             </div>
           ))}
         </div>
-
-        <p className="relative text-xs text-[var(--color-text-faint)]">
-          © 2026 Pollify · Made for the community
-        </p>
       </div>
 
       {/* Right panel / form */}
@@ -95,7 +99,7 @@ export default function Login() {
               required
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              placeholder="you@example.com"
+              placeholder="youwexample.com"
               className="flex-1 bg-transparent outline-none text-sm placeholder:text-[var(--color-text-faint)]"
             />
             <Mail size={16} className="text-[var(--color-text-faint)]" />
@@ -105,7 +109,10 @@ export default function Login() {
             <label className="block text-[11px] font-semibold tracking-widest text-[var(--color-text-faint)]">
               PASSWORD
             </label>
-            <Link to="/login" className="text-xs text-[var(--color-brand)] hover:underline">
+            <Link
+              to="/login"
+              className="text-xs text-[var(--color-brand)] hover:underline"
+            >
               Forgot password?
             </Link>
           </div>

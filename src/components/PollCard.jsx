@@ -1,17 +1,23 @@
-import { useState } from "react";
+import { memo, useState } from "react";
 import Icon from "./Icon";
 
 const avatarColors = [
-  "#10b981", "#38bdf8", "#a78bfa", "#f59e0b", "#f472b6", "#f87171",
+  "#10b981",
+  "#38bdf8",
+  "#a78bfa",
+  "#f59e0b",
+  "#f472b6",
+  "#f87171",
 ];
 
 function colorFor(name) {
   let hash = 0;
-  for (let i = 0; i < name.length; i++) hash = name.charCodeAt(i) + ((hash << 5) - hash);
+  for (let i = 0; i < name.length; i++)
+    hash = name.charCodeAt(i) + ((hash << 5) - hash);
   return avatarColors[Math.abs(hash) % avatarColors.length];
 }
 
-export default function PollCard({ poll }) {
+function PollCard({ poll }) {
   const [votedId, setVotedId] = useState(null);
   const [options, setOptions] = useState(poll.options);
   const [upvoted, setUpvoted] = useState(false);
@@ -24,7 +30,7 @@ export default function PollCard({ poll }) {
     if (votedId) return;
     setVotedId(id);
     setOptions((prev) =>
-      prev.map((o) => (o.id === id ? { ...o, votes: o.votes + 1 } : o))
+      prev.map((o) => (o.id === id ? { ...o, votes: o.votes + 1 } : o)),
     );
   }
 
@@ -45,7 +51,10 @@ export default function PollCard({ poll }) {
           </div>
           <p className="text-sm">
             <span className="font-semibold">{poll.author}</span>
-            <span className="text-[var(--color-text-faint)]"> · {poll.handle} · {poll.time}</span>
+            <span className="text-[var(--color-text-faint)]">
+              {" "}
+              · {poll.handle} · {poll.time}
+            </span>
           </p>
         </div>
         {poll.tag && (
@@ -62,7 +71,9 @@ export default function PollCard({ poll }) {
       ) : (
         <div className="flex flex-col gap-2 mb-4">
           {options.map((opt) => {
-            const pct = totalVotes ? Math.round((opt.votes / totalVotes) * 100) : 0;
+            const pct = totalVotes
+              ? Math.round((opt.votes / totalVotes) * 100)
+              : 0;
             const isVoted = votedId === opt.id;
             return (
               <button
@@ -86,7 +97,11 @@ export default function PollCard({ poll }) {
                       <Icon
                         name={opt.id === "yes" ? "check" : "logout"}
                         size={14}
-                        className={opt.id === "yes" ? "text-[var(--color-brand)]" : "text-red-400"}
+                        className={
+                          opt.id === "yes"
+                            ? "text-[var(--color-brand)]"
+                            : "text-red-400"
+                        }
                       />
                     ) : (
                       <span className="w-5 h-5 rounded-full bg-[var(--color-border-light)] flex items-center justify-center text-[10px] font-bold">
@@ -95,7 +110,11 @@ export default function PollCard({ poll }) {
                     )}
                     {opt.label}
                   </span>
-                  {votedId && <span className="text-[var(--color-text-muted)]">{pct}%</span>}
+                  {votedId && (
+                    <span className="text-[var(--color-text-muted)]">
+                      {pct}%
+                    </span>
+                  )}
                 </span>
               </button>
             );
@@ -107,7 +126,9 @@ export default function PollCard({ poll }) {
         <button
           onClick={toggleUpvote}
           className={`flex items-center gap-1.5 text-sm font-medium transition-colors focus-ring rounded-md px-1 ${
-            upvoted ? "text-[var(--color-brand)]" : "hover:text-[var(--color-text)]"
+            upvoted
+              ? "text-[var(--color-brand)]"
+              : "hover:text-[var(--color-text)]"
           }`}
         >
           <Icon name="up" size={15} />
@@ -120,7 +141,9 @@ export default function PollCard({ poll }) {
         <button
           onClick={() => setSaved((s) => !s)}
           className={`flex items-center gap-1.5 text-sm font-medium transition-colors focus-ring rounded-md px-1 ${
-            saved ? "text-[var(--color-brand)]" : "hover:text-[var(--color-text)]"
+            saved
+              ? "text-[var(--color-brand)]"
+              : "hover:text-[var(--color-text)]"
           }`}
         >
           <Icon name="bookmark" size={15} />
@@ -133,6 +156,8 @@ export default function PollCard({ poll }) {
     </article>
   );
 }
+
+export default memo(PollCard);
 
 function RatingPoll() {
   const [rating, setRating] = useState(0);
@@ -160,7 +185,9 @@ function RatingPoll() {
         </button>
       ))}
       {rating > 0 && (
-        <span className="ml-2 text-sm text-[var(--color-text-muted)]">You rated {rating}/5</span>
+        <span className="ml-2 text-sm text-[var(--color-text-muted)]">
+          You rated {rating}/5
+        </span>
       )}
     </div>
   );

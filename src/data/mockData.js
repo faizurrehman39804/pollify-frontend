@@ -1,10 +1,11 @@
 export const currentUser = {
   name: "Faiz ur Rehman",
-  handle: "@faizurrehman39804@gmail.com",
-  avatar: "https://i.pravatar.cc/150?img=13",
-  created: 0,
-  voted: 0,
-  saved: 0,
+  role: "Frontend Developer",
+  handle: "@faiz.rehman",
+  avatar: "/profile.png",
+  created: 12,
+  voted: 96,
+  saved: 41,
 };
 
 export const pollTypeStats = [

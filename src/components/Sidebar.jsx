@@ -5,7 +5,7 @@ import { useAuth } from "../context/AuthContext";
 
 export default function Sidebar() {
   const navigate = useNavigate();
-  const { logout } = useAuth();
+  const { user, logout } = useAuth();
 
   return (
     <aside className="hidden lg:flex w-64 shrink-0 flex-col justify-between border-r border-[var(--color-border)] px-4 py-6 h-screen sticky top-0">
@@ -41,7 +41,24 @@ export default function Sidebar() {
         </nav>
       </div>
 
-      <div className="flex flex-col gap-1">
+      <div className="flex flex-col gap-4">
+        <div className="rounded-2xl border border-[var(--color-border)] bg-[var(--color-surface)] p-4">
+          <div className="flex items-center gap-3">
+            <img
+              src={user?.avatar ?? "/profile.png"}
+              alt={user?.name ?? "Profile"}
+              className="w-10 h-10 rounded-full object-cover border border-[var(--color-border-light)]"
+            />
+            <div className="min-w-0">
+              <p className="text-sm font-semibold truncate">
+                {user?.name ?? "Guest"}
+              </p>
+              <p className="text-[11px] text-[var(--color-text-faint)] truncate">
+                {user?.role ?? "Frontend Developer"}
+              </p>
+            </div>
+          </div>
+        </div>
         <NavLink
           to="/settings"
           className={({ isActive }) =>

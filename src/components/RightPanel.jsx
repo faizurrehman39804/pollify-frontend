@@ -1,5 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import Icon from "./Icon";
+import UserProfileCard from "./UserProfileCard";
 import { pollTypeStats } from "../data/mockData";
 import { useAuth } from "../context/AuthContext";
 
@@ -10,39 +11,12 @@ export default function RightPanel() {
 
   return (
     <aside className="hidden xl:flex w-80 shrink-0 flex-col gap-6 py-6 pl-6 pr-2 sticky top-0 h-screen overflow-y-auto">
-      <div className="bg-[var(--color-surface)] border border-[var(--color-border)] rounded-2xl p-6 flex flex-col items-center text-center">
-        <img
-          src={user?.avatar}
-          alt={user?.name}
-          className="w-16 h-16 rounded-full object-cover border-2 border-[var(--color-brand)]/30 mb-3"
-        />
-        <p className="font-semibold text-base">{user?.name}</p>
-        <p className="text-xs text-[var(--color-text-faint)] mb-4 truncate max-w-full">
-          {user?.handle}
-        </p>
-
-        <div className="grid grid-cols-3 gap-2 w-full mb-4">
-          {[
-            { label: "Created", value: user?.created },
-            { label: "Voted", value: user?.voted },
-            { label: "Saved", value: user?.saved },
-          ].map((stat) => (
-            <div key={stat.label}>
-              <p className="text-lg font-bold">{stat.value}</p>
-              <p className="text-[10px] uppercase tracking-wide text-[var(--color-text-faint)]">
-                {stat.label}
-              </p>
-            </div>
-          ))}
-        </div>
-
-        <button
-          onClick={() => navigate("/settings")}
-          className="w-full text-sm font-medium border border-[var(--color-border-light)] rounded-lg py-2 hover:bg-[var(--color-surface-hover)] transition-colors focus-ring"
-        >
-          View profile
-        </button>
-      </div>
+      <UserProfileCard
+        user={user}
+        showStats
+        actionLabel="View profile"
+        onAction={() => navigate("/settings")}
+      />
 
       <div className="bg-[var(--color-surface)] border border-[var(--color-border)] rounded-2xl p-6">
         <p className="flex items-center gap-2 text-xs font-semibold text-[var(--color-text-faint)] tracking-widest mb-4">

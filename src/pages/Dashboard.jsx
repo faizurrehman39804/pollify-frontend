@@ -19,6 +19,7 @@ export default function Dashboard() {
   const [question, setQuestion] = useState("");
 
   const firstName = user?.name?.split(" ")[0] || "there";
+  const role = user?.role ?? "Frontend Developer";
 
   const visiblePolls = useMemo(() => {
     if (filter === "All") return polls;
@@ -27,13 +28,17 @@ export default function Dashboard() {
 
   return (
     <div>
-      <h1 className="text-2xl font-bold mb-1">Hey, {firstName} 👋</h1>
-      <p className="text-[var(--color-text-muted)] mb-6">What's the community thinking today?</p>
+      <div className="flex flex-wrap items-center gap-3 mb-6">
+        <div>
+          <h1 className="text-2xl font-bold">Hey, {firstName} </h1>
+          <p className="text-sm text-[var(--color-text-muted)]">{role}</p>
+        </div>
+      </div>
 
       <div className="flex items-center gap-3 bg-[var(--color-surface)] border border-[var(--color-border)] rounded-xl px-4 py-3 mb-5">
         <img
-          src={user?.avatar}
-          alt=""
+          src={user?.avatar ?? "/profile.png"}
+          alt={user?.name ?? "Profile"}
           className="w-8 h-8 rounded-full object-cover shrink-0"
         />
         <input
